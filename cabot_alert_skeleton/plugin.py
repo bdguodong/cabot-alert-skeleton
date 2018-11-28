@@ -7,6 +7,12 @@ logger = getLogger(__name__)
 
 class SkeletonAlertUserSettingsForm(forms.Form):
     favorite_bone = forms.CharField(max_length=100)
+    skeleton_alias = models.CharField(max_length=50, blank=True)
+
+    def serialize(self):
+        return {
+            "skeleton_alias": self.skeleton_alias
+        }
 
 class SkeletonAlertPlugin(AlertPlugin):
     name = "Skeleton"

@@ -9,11 +9,6 @@ from logging import getLogger
 logger = getLogger(__name__)
 
 
-class SkeletonAlertUserData(AlertPluginUserData):
-    name = "Skeleton Plugin"
-    favorite_bone = models.CharField(max_length=50, blank=True)
-
-
 class SkeletonAlert(AlertPlugin):
     name = "Skeleton"
     author = "Jack Skellington"
@@ -21,6 +16,17 @@ class SkeletonAlert(AlertPlugin):
     def send_alert(self, service, users, duty_officers):
         """Implement your send_alert functionality here."""
         return
+
+
+class SkeletonAlertUserData(AlertPluginUserData):
+    name = "Skeleton Plugin"
+    # favorite_bone = models.CharField(max_length=50, blank=True)
+    skeleton_alias = models.CharField(max_length=50, blank=True)
+
+    def serialize(self):
+        return {
+            "skeleton_alias": self.skeleton_alias
+        }
 
 # class SkeletonAlertUserSettingsForm(forms.Form):
 #     favorite_bone = forms.CharField(max_length=100)
